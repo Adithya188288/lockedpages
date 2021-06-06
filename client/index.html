@@ -5,7 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client - 1</title>
-    <script src='http://localhost:3000/script.js'></script>
+    <!-- <script src='http://localhost:3000/script.js'></script> -->
+    <script>
+        document.addEventListener("DOMContentLoaded",verify)
+        function verify(){
+        document.getElementsByTagName("body")[0].style.display = "none";
+    fetch('http://localhost:3000/redirectToLogin?success=false')
+    .then(res => res.json())
+    .then(res => {
+        if(res.type == 'failure'){
+            window.location.replace(`http://localhost:3000/${res.to}`)
+        }
+    })
+}
+    </script>
 </head>
 <body>
 
