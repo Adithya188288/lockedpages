@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+
+      $(document).ready(function(){
+          $("form#login-form").submit(function (event) {
+            debugger
+            event.preventDefault();
+            event.stopPropagation();
+            let data = $(this).serialize();
+            
+            $.ajax({
+              url: $(this).attr("action"),
+              data,
+              type: "POST",
+              success: function (data) {
+                  console.log("fff", data)
+              },
+              failure: function(data){
+                  console.log('ggg', data)
+              }
+            });
+            return false;
+          });
+      })
+
+    </script>
+  </head>
+  <body>
+    <p>Locked Pages</p>
+
+    <div id="lp-login">
+      <form id="login-form" action="http://localhost:3000/login" method="POST">
+        <label name="email">Email</label>
+        <input name="email" type="email" />
+        <label name="password">Password</label>
+        <input name="password" type="password" />
+        <button>Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
